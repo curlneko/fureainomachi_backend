@@ -1,0 +1,27 @@
+{
+  "name": "dev-environment",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "python": "3.11",
+    "git": "latest"
+  },
+  "forwardPorts": [8000, 5432],
+  "postCreateCommand": "pip install --user -r requirements.txt",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "python.formatting.provider": "black",
+        "python.sortImports.path": "isort"
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}
