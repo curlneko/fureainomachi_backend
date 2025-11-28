@@ -7,6 +7,6 @@ class Post(BaseModel):
     content: str
     author_id: int
 
-    # ← SQLAlchemyの結果をPydanticが受け取れる
+    # SQLAlchemyの結果をPydanticが受け取れる
     class Config:
         orm_mode = True
