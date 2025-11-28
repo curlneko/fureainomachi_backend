@@ -1,15 +1,25 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
+import os
 
-DB_URL = "postgresql://user:password@db:5432/fureainomachi"
+# .env ファイルの内容を読み込む
+load_dotenv()
+
+DB_URL = os.getenv("DATABASE_URL")
 
 # SQLAlchemy エンジン作成
+# 実行されるSQLをログに出力する
+# SQLAlchemy 2.0 スタイル（より明確なAPI）で動作する
 engine = create_engine(DB_URL, echo=True, future=True)
 
 # セッション作成
+# 明示的にコミットしない限り変更は確定されない
+# セッションに追加したオブジェクトは、明示的にcommitするまで自動でDBに反映されない
+# どのデータベース(↑engine)に接続するかを指定
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Baseクラス（モデル作成用）
+# Baseクラス（モデル作成用）、ORMモデル（テーブルクラス）の基底クラス
 Base = declarative_base()
 
 
