@@ -7,7 +7,7 @@
     "python": "3.11",
     "git": "latest"
   },
-  "forwardPorts": [8000, 5432],
+  "forwardPorts": [8000],
   "postCreateCommand": "pip install --user -r requirements.txt",
   "customizations": {
     "vscode": {
