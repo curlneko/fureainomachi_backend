@@ -10,8 +10,8 @@ services:
       POSTGRES_USER: user
       POSTGRES_DB: fureainomachi
       POSTGRES_PASSWORD: password
-    networks:
-      - fureai-net
+    ports:
+      - "5432:5432"
   app:
     build:
       context: ..
@@ -22,15 +22,8 @@ services:
     working_dir: /workspaces/fureainomachi_backend/
     depends_on:
       - db
-    networks:
-      - fureai-net
     ports:
       - "8000:8000"
 
 volumes:
   postgres-data:
-
-
-networks:
-  fureai-net:
-    driver: bridge
