@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 
 from app.db.database import Base, engine
 from app.db.seed import init_dummy_data
-from app.routers.posts import router as posts_router
+from app.routers.posts_routers import router as posts_router
 
 # .env ファイルの内容を読み込む
 load_dotenv()

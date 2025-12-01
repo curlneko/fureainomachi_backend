@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from app.models.posts import Post
-from app.schemas.posts import PostCreate
+from app.models.posts_model import Post
+from app.schemas.posts_schema import PostCreate
 
 
 def get_posts_service(db: Session):
