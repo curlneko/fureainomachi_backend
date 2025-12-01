@@ -16,3 +16,10 @@ http://127.0.0.1:8000/redoc
 http://127.0.0.1:8000/docs
 ### OpenAPI
 http://127.0.0.1:8000/openapi.json
+
+## 単体テスト実行
+pytest -v --cov=app --cov-report=html tests/
+
+## テスト実装規則
+### 単体テスト
+services、routersはカバーレッジ100％

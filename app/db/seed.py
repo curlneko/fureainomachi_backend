@@ -1,5 +1,5 @@
 from app.db.database import SessionLocal
-from app.models.posts import Post
+from app.models.posts_model import Post
 from app.db.dummy_data.posts import dummy_posts
 
 

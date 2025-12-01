@@ -1,4 +1,4 @@
-from app.models.posts import Post
+from app.models.posts_model import Post
 
 dummy_posts = [
     Post(title="First Post",
