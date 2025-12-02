@@ -1,8 +1,8 @@
 from unittest.mock import MagicMock
-from app.services.posts_service import get_posts_service, create_post_service
 
 from app.models.posts_model import Post
 from app.schemas.posts_schema import PostCreate
+from app.services.posts_service import create_post_service, get_posts_service
 
 
 def test_get_posts_service():

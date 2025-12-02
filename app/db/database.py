@@ -1,12 +1,14 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-from dotenv import load_dotenv
 import os
+from typing import Generator
+
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 # .env ファイルの内容を読み込む
 load_dotenv()
 
-DB_URL = os.getenv("DATABASE_URL")
+DB_URL = os.environ["DATABASE_URL"]
 
 # SQLAlchemy エンジン作成
 # 実行されるSQLをログに出力する
@@ -19,12 +21,14 @@ engine = create_engine(DB_URL, echo=True, future=True)
 # どのデータベース(↑engine)に接続するかを指定
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+
 # Baseクラス（モデル作成用）、ORMモデル（テーブルクラス）の基底クラス
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 
 # DBセッション依存関数
-def get_db():
+def get_db() -> Generator[Session, None, None]:
     # SQLAlchemy のセッションを作成
     db = SessionLocal()
     try:

@@ -3,8 +3,10 @@ uvicorn[standard]
 psycopg2-binary
 black
 isort
+mypy
 SQLAlchemy
 python-dotenv
 pytest
 pytest-mock
 pytest-cov
+flake8

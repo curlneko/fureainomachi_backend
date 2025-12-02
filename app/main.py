@@ -1,18 +1,20 @@
 import os
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
+
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from contextlib import asynccontextmanager
 
 from app.db.database import Base, engine
 from app.db.seed import init_dummy_data
-from app.routers.posts_routers import router as posts_router
+from app.routers.posts_router import router as posts_router
 
 # .env ファイルの内容を読み込む
 load_dotenv()
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     # modelsに定義されたテーブルを作成
     Base.metadata.create_all(bind=engine)
 
