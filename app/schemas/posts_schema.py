@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class PostBase(BaseModel):
@@ -15,5 +15,4 @@ class PostGet(PostBase):
     id: int
 
     # SQLAlchemyの結果をPydanticが受け取れる
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

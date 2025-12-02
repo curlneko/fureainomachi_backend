@@ -13,16 +13,41 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-python.vscode-pylance",
         "ms-azuretools.vscode-docker",
-        "mhutchie.git-graph" 
+        "mhutchie.git-graph",
+        "ms-python.flake8",
+        "ms-python.isort",
+        "ms-python.black-formatter",
+        "ms-python.mypy-type-checker"
       ],
       "settings": {
-        "editor.formatOnSave": true,
+        "git-graph.showBranchLabels": true,
+        "git-graph.showRemoteBranches": true,
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.tabSize": 4, 
+          "editor.formatOnSave": true,
+          "editor.formatOnType": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+          }
+        },
         "python.formatting.provider": "black",
         "python.sortImports.path": "isort",
-        "git-graph.showBranchLabels": true,
-        "git-graph.showRemoteBranches": true
+        "python.sortImports.args": [
+          "--settings-path", "setup.cfg"
+        ],
+        "python.linting.enabled": true,
+        "python.linting.lintOnSave": true,
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        "python.linting.flake8Args": [
+          "--config", "setup.cfg"
+        ],
+        "python.linting.mypyEnabled": true,
+        "python.linting.mypyArgs": [
+          "--config", "setup.cfg"
+        ]
       }
     }
   },
