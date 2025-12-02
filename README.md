@@ -17,9 +17,30 @@ http://127.0.0.1:8000/docs
 ### OpenAPI
 http://127.0.0.1:8000/openapi.json
 
-## 単体テスト実行
-pytest -v --cov=app --cov-report=html tests/
-
 ## テスト実装規則
 ### 単体テスト
 services、routersはカバーレッジ100％
+
+### 単体テスト実行
+pytest -v --cov=app --cov-report=html tests/
+
+## Makefile実行
+black – コードフォーマッタ（自動整形）
+isort – import 整理ツール
+flake8 – Lint / コード品質チェック
+mypy - 型チェック
+
+### コード整形
+make format
+
+### Lint チェック
+make lint
+
+### 型チェック
+make typecheck
+
+### テスト + カバレッジ
+make test
+
+### まとめて全部実行(commit前かならず実行)
+make all
