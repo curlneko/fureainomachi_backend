@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Alembic の Python キャッシュ
+alembic/__pycache__/
+alembic/*.pyc
+alembic/versions/

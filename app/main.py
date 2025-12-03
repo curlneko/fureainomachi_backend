@@ -17,11 +17,13 @@ load_dotenv()
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     # modelsに定義されたテーブルを作成
-    Base.metadata.create_all(bind=engine)
+    # Base.metadata.create_all(bind=engine)
+
+    Base.metadata.drop_all(bind=engine)
 
     # Dummy データ投入
-    if os.getenv("ENV") == "DEV":
-        init_dummy_data()
+    # if os.getenv("ENV") == "DEV":
+    # init_dummy_data()
 
     # アプリ起動時の処理
     yield
