@@ -9,6 +9,13 @@ pip install --user -r requirements.txt
 ## サーバー起動
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
+## DBマイグレーション
+### マイグレーションファイルを「作成」する
+alembic revision --autogenerate -m "initial tables"
+### マイグレーションファイルに書かれた内容を 実際のデータベースに適用
+alembic upgrade head
+alembic -x echo=True upgrade head
+
 ## API
 ### Redoc
 http://127.0.0.1:8000/redoc

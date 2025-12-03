@@ -5,6 +5,8 @@ black
 isort
 mypy
 SQLAlchemy
+alembic
+alembic[tz]
 python-dotenv
 pytest
 pytest-mock
