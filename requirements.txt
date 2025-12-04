@@ -7,6 +7,8 @@ mypy
 SQLAlchemy
 alembic
 alembic[tz]
+pydantic
+pydantic[email]
 python-dotenv
 pytest
 pytest-mock
