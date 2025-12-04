@@ -13,17 +13,7 @@ from app.schemas.users_schema import UserCreate, UserGet
 
 def test_create_user_success() -> None:
     mock_db = MagicMock()
-    mock_user_create = UserCreate(
-        name="Alex",
-        email="alex@example.com",
-        password="securepassword123",
-        current_country=Country.JA,
-        birth_country=Country.TW,
-        gender=Gender.FEMALE,
-        spoken_language=[Language.JA, Language.EN],
-        learning_language=[Language.ZH],
-        birthday=date(1995, 1, 1),
-    )
+    mock_user_create_instance = MagicMock()
 
     mock_user = User(
         id=1,
@@ -39,9 +29,11 @@ def test_create_user_success() -> None:
     )
 
     with patch(
+        "app.schemas.users_schema.UserCreate", return_value=mock_user_create_instance
+    ), patch(
         "app.routers.users_router.create_user_service", return_value=mock_user
     ) as mock_service:
-        result = create_user(input=mock_user_create, db=mock_db)
+        result = create_user(input=mock_user_create_instance, db=mock_db)
 
     assert result == UserGet.model_validate(mock_user)
-    mock_service.assert_called_once_with(mock_db, mock_user_create)
+    mock_service.assert_called_once_with(mock_db, mock_user_create_instance)
