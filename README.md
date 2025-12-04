@@ -32,7 +32,7 @@ http://127.0.0.1:8000/openapi.json
 services、routersはカバーレッジ100％
 
 ### 単体テスト実行
-pytest -v --cov=app --cov-report=html tests/
+pytest -v --cov=app --cov-report=html --cov-report=term-missing tests/
 
 ## Makefile実行
 black – コードフォーマッタ（自動整形）

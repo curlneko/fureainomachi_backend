@@ -5,7 +5,7 @@ from app.schemas.posts_schema import PostCreate
 from app.services.posts_service import create_post_service, get_posts_service
 
 
-def test_get_posts_service():
+def test_get_posts_service() -> None:
     # モックのDBセッションを作成
     mock_db = MagicMock()
 
@@ -26,7 +26,7 @@ def test_get_posts_service():
     mock_db.query.assert_called_once()
 
 
-def test_create_post_service():
+def test_create_post_service() -> None:
     # モックのDBセッションを作成
     mock_db = MagicMock()
     mock_db.add = MagicMock()

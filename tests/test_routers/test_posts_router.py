@@ -1,13 +1,14 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
+from fastapi import HTTPException
 
 from app.models.posts_model import Post
 from app.routers.posts_router import create_post, get_posts
 from app.schemas.posts_schema import PostCreate, PostGet
 
 
-def test_get_posts_success():
+def test_get_posts_success() -> None:
     mock_db = MagicMock()
 
     # テストデータ（SQLAlchemyモデル）
@@ -29,14 +30,14 @@ def test_get_posts_success():
     mock_service.assert_called_once_with(mock_db)
 
 
-def test_get_posts_not_found():
+def test_get_posts_not_found() -> None:
     mock_db = MagicMock()
 
     with patch(
         "app.routers.posts_router.get_posts_service", return_value=[]
     ) as mock_service:
         # 発生しなかった場合はテスト失敗、発生すればテスト成功
-        with pytest.raises(Exception) as exc_info:
+        with pytest.raises(HTTPException) as exc_info:
             get_posts(db=mock_db)
 
     assert exc_info.value.status_code == 404
@@ -44,7 +45,7 @@ def test_get_posts_not_found():
     mock_service.assert_called_once_with(mock_db)
 
 
-def test_create_post_success():
+def test_create_post_success() -> None:
     mock_db = MagicMock()
     mock_post_create = PostCreate(title="Hello", content="World", author_id=1)
     mock_post = Post(id=1, title="Hello", content="World", author_id=1)
