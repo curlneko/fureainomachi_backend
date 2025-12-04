@@ -6,9 +6,9 @@ lint:
 	flake8 .
 
 typecheck:
-	mypy app/
+	mypy .
 
 test:
-	pytest -v --cov=app --cov-report=html tests/
+	pytest -v --cov=app --cov-report=html --cov-report=term-missing tests/
 
 all: format lint typecheck test
