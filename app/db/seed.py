@@ -17,3 +17,7 @@ def init_dummy_data() -> None:
         db.commit()
     finally:
         db.close()
+
+
+if __name__ == "__main__":
+    init_dummy_data()

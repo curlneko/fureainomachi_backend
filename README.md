@@ -12,9 +12,12 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ## DBマイグレーション
 ### マイグレーションファイルを「作成」する
 alembic revision --autogenerate -m "initial tables"
-### マイグレーションファイルに書かれた内容を 実際のデータベースに適用
+### マイグレーションファイルに書かれた内容を実際のデータベースに適用
 alembic upgrade head
 alembic -x echo=True upgrade head
+
+### データの投入
+python -m app.db.seed
 
 ## API
 ### Redoc
