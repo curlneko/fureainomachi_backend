@@ -8,8 +8,9 @@ from app.enums.language import Language
 from app.utils.validate import (
     validate_birthday,
     validate_email,
-    validate_input,
     validate_password,
+    validate_string,
+    validate_string_list,
 )
 
 
@@ -24,9 +25,22 @@ class UserBase(BaseModel):
     learning_language: list[Language]
     birthday: date
 
-    @field_validator("*", mode="before")
+    @field_validator(
+        "name",
+        "email",
+        "password",
+        "current_country",
+        "birth_country",
+        "gender",
+        "spoken_language",
+        "learning_language",
+        mode="before",
+    )
     def all_fields_check(cls, value: str | list[str]) -> str | list[str]:
-        return validate_input(value)
+        if isinstance(value, str):
+            return validate_string(value)
+        if isinstance(value, list):
+            return validate_string_list(value)
 
     @field_validator("email")
     def email_check(cls, value: str) -> str:
