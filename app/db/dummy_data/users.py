@@ -5,20 +5,20 @@ from app.models.users_model import User
 dummy_users = [
     User(
         name="Alex",
-        current_country="JP",
-        birth_country="TW",
+        current_country="Japan",
+        birth_country="Taiwan",
         gender="FEMALE",
-        spoken_language=["ja", "en"],
-        learning_language=["zh"],
+        spoken_language=["JAPANESES", "ENGLISH"],
+        learning_language=["CHINESE"],
         birthday=date(1995, 1, 1),
     ),
     User(
         name="Bob",
-        current_country="TW",
-        birth_country="TW",
+        current_country="Taiwan",
+        birth_country="Taiwan",
         gender="MALE",
-        spoken_language=["zh", "en"],
-        learning_language=["ja"],
+        spoken_language=["CHINESE", "ENGLISH"],
+        learning_language=["JAPANESES"],
         birthday=date(1992, 11, 3),
     ),
 ]
