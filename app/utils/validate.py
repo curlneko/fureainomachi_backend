@@ -33,13 +33,14 @@ def check_string(value: str) -> str:
     return value
 
 
-def validate_input(value: str | list[str]) -> str | list[str]:
-    """文字列または文字列リストをチェック"""
-    if isinstance(value, str):
-        return check_string(value)
-    if isinstance(value, list):
-        return [check_string(v) if isinstance(v, str) else v for v in value]
-    return value
+def validate_string(value: str) -> str:
+    """文字列をチェック"""
+    return check_string(value)
+
+
+def validate_string_list(value: list[str]) -> list[str]:
+    """文字列リストをチェック"""
+    return [check_string(v) for v in value]
 
 
 def validate_email(value: str) -> str:
