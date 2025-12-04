@@ -9,6 +9,8 @@ from app.enums.language import Language
 
 class UserBase(BaseModel):
     name: str
+    email: str
+    password: str
     current_country: Country
     birth_country: Country
     gender: Gender

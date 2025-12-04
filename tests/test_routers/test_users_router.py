@@ -15,6 +15,8 @@ def test_create_user_success() -> None:
     mock_db = MagicMock()
     mock_user_create = UserCreate(
         name="Alex",
+        email="alex@example.com",
+        password="securepassword123",
         current_country=Country.JA,
         birth_country=Country.TW,
         gender=Gender.FEMALE,
@@ -26,6 +28,8 @@ def test_create_user_success() -> None:
     mock_user = User(
         id=1,
         name="Alex",
+        email="alex@example.com",
+        password="securepassword123",
         current_country=Country.JA,
         birth_country=Country.TW,
         gender=Gender.FEMALE,

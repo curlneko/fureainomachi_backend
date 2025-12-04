@@ -19,6 +19,8 @@ def test_create_user_service() -> None:
     # テストデータ（Pydanticモデル）
     new_user_data = UserCreate(
         name="Alex",
+        email="alex@example.com",
+        password="securepassword123",
         current_country=Country.JA,
         birth_country=Country.TW,
         gender=Gender.FEMALE,

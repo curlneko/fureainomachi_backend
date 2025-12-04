@@ -5,6 +5,8 @@ from app.models.users_model import User
 dummy_users = [
     User(
         name="Alex",
+        email="alex@example.com",
+        password="securepassword123",
         current_country="Japan",
         birth_country="Taiwan",
         gender="FEMALE",
@@ -14,6 +16,8 @@ dummy_users = [
     ),
     User(
         name="Bob",
+        email="bob@example.com",
+        password="anothersecurepassword456",
         current_country="Taiwan",
         birth_country="Taiwan",
         gender="MALE",
