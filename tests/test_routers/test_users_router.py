@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
+from app.core.response import ResponseModel, success_response
 from app.enums.country import Country
 from app.enums.gender import Gender
 from app.enums.language import Language
@@ -35,5 +36,5 @@ def test_create_user_success() -> None:
     ) as mock_service:
         result = create_user(input=mock_user_create_instance, db=mock_db)
 
-    assert result == UserGet.model_validate(mock_user)
+    assert result == success_response(UserGet.model_validate(mock_user))
     mock_service.assert_called_once_with(mock_db, mock_user_create_instance)

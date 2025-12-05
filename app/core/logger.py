@@ -27,3 +27,5 @@ logger.add(
     retention="7 days",
     serialize=True,
 )
+
+__all__ = ["logger"]

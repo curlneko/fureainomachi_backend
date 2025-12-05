@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 from fastapi import HTTPException
 
+from app.core.response import ResponseModel, success_response
 from app.models.posts_model import Post
 from app.routers.posts_router import create_post, get_posts
 from app.schemas.posts_schema import PostCreate, PostGet
@@ -22,26 +23,13 @@ def test_get_posts_success() -> None:
     ) as mock_service:
         result = get_posts(db=mock_db)
 
-    assert result == [
-        PostGet.model_validate(mock_post1),
-        PostGet.model_validate(mock_post2),
-    ]
+    assert result == success_response(
+        [
+            PostGet.model_validate(mock_post1),
+            PostGet.model_validate(mock_post2),
+        ]
+    )
 
-    mock_service.assert_called_once_with(mock_db)
-
-
-def test_get_posts_not_found() -> None:
-    mock_db = MagicMock()
-
-    with patch(
-        "app.routers.posts_router.get_posts_service", return_value=[]
-    ) as mock_service:
-        # 発生しなかった場合はテスト失敗、発生すればテスト成功
-        with pytest.raises(HTTPException) as exc_info:
-            get_posts(db=mock_db)
-
-    assert exc_info.value.status_code == 404
-    assert exc_info.value.detail == "Posts not found"
     mock_service.assert_called_once_with(mock_db)
 
 
@@ -55,5 +43,5 @@ def test_create_post_success() -> None:
     ) as mock_service:
         result = create_post(post=mock_post_create, db=mock_db)
 
-    assert result == PostGet.model_validate(mock_post)
+    assert result == success_response(PostGet.model_validate(mock_post))
     mock_service.assert_called_once_with(mock_db, mock_post_create)
