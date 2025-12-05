@@ -42,8 +42,13 @@ def test_http_exception_handler() -> None:
     client = get_test_client()
 
     res = client.get("/http-exception")
+
     assert res.status_code == 404
-    assert res.json() == {"message": "Item not found", "status": "error"}
+    assert res.json() == {
+        "message": "Item not found",
+        "status": "error",
+        "result": None,
+    }
 
 
 def test_validation_exception_handler() -> None:
@@ -51,7 +56,6 @@ def test_validation_exception_handler() -> None:
 
     # emailを渡さずにリクエストを送信してバリデーションエラーを発生させる
     res = client.get("/validation-exception")
-    print(res.json())
     assert res.status_code == 422
     assert res.json() == {
         "message": (
@@ -59,6 +63,7 @@ def test_validation_exception_handler() -> None:
             "'msg': 'Field required', 'input': None}]"
         ),
         "status": "error",
+        "result": None,
     }
 
 
@@ -67,4 +72,8 @@ def test_global_exception_handler() -> None:
 
     res = client.get("/general-exception")
     assert res.status_code == 500
-    assert res.json() == {"message": "Internal Server Error", "status": "error"}
+    assert res.json() == {
+        "message": "Internal Server Error",
+        "status": "error",
+        "result": None,
+    }
