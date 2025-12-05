@@ -1,4 +1,4 @@
-import os
+import sys
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
@@ -11,6 +11,7 @@ from app.core.error_handlers import (
     http_exception_handler,
     validation_exception_handler,
 )
+from app.core.logger import logger
 from app.db.database import Base, engine
 from app.routers.posts_router import router as posts_router
 from app.routers.users_router import router as users_router
@@ -22,10 +23,11 @@ load_dotenv()
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     # アプリ起動時の処理
+    logger.info("アプリ起動: DB コネクションやバックグラウンドタスクを初期化します")
     yield
 
     # アプリ終了時の処理
-    print("アプリ終了: DB コネクションやバックグラウンドタスクを閉じます")
+    logger.info("アプリ終了: DB コネクションやバックグラウンドタスクを閉じます")
     engine.dispose()
 
 
