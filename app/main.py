@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.exceptions import RequestValidationError
 
-from app.core.handlers import (
+from app.core.error_handlers import (
     global_exception_handler,
     http_exception_handler,
     validation_exception_handler,
