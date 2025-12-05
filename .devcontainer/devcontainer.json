@@ -40,7 +40,7 @@
           "editor.formatOnSave": true,
           "editor.formatOnType": true,
           "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": "always"
           }
         },
         "python.formatting.provider": "black",
@@ -56,5 +56,5 @@
       }
     }
   },
-  "remoteUser": "vscode"
+  "remoteUser": "root"
 }

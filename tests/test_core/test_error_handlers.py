@@ -54,7 +54,10 @@ def test_validation_exception_handler() -> None:
     print(res.json())
     assert res.status_code == 422
     assert res.json() == {
-        "message": "[{'type': 'missing', 'loc': ('body',), 'msg': 'Field required', 'input': None}]",
+        "message": (
+            "[{'type': 'missing', 'loc': ('body',), "
+            "'msg': 'Field required', 'input': None}]"
+        ),
         "status": "error",
     }
 
