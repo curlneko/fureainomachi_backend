@@ -13,6 +13,7 @@ from app.core.error_handlers import (
 )
 from app.core.logger import logger
 from app.db.database import Base, engine
+from app.routers.chat_router import router as chat_router
 from app.routers.posts_router import router as posts_router
 from app.routers.users_router import router as users_router
 
@@ -39,3 +40,4 @@ app.add_exception_handler(Exception, global_exception_handler)
 
 app.include_router(posts_router, prefix="/posts", tags=["posts"])
 app.include_router(users_router, prefix="/users", tags=["users"])
+app.include_router(chat_router, prefix="/ws/chat", tags=["chat"])
